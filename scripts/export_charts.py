@@ -12,7 +12,7 @@ from chart_export import (
     write_vendor_plotly_js,
 )
 from chart_meta import CHART_META, validate
-from notebook_exec import build_working_copy, execute_notebook
+from notebook_exec import build_working_copy, collect_stream_warnings, execute_notebook
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SRC_IPYNB = PROJECT_ROOT / "Presentation 4 - Metro Analytics Notebook.ipynb"
@@ -107,6 +107,9 @@ def _build() -> int:
 
     build_working_copy(str(SRC_IPYNB), str(WORKING_COPY))
     execute_notebook(str(WORKING_COPY), cwd=str(PROJECT_ROOT))
+
+    for line in collect_stream_warnings(str(WORKING_COPY)):
+        print(line)
 
     raw_entries = []
     if RAW_MANIFEST.exists():

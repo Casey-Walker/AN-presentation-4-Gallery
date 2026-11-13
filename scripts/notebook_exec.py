@@ -73,3 +73,21 @@ def execute_notebook(nb_path: str, cwd: str) -> None:
     client = NotebookClient(nb, resources={"metadata": {"path": cwd}})
     client.execute()
     nbformat.write(nb, nb_path)
+
+
+def collect_stream_warnings(nb_path: str, marker: str = "[chart_export]") -> list[str]:
+    """Scans an already-executed notebook's stdout for lines containing
+    `marker`. The kernel that runs it is a separate process with no console
+    of its own, so this is how a print() inside the injected prelude (e.g.
+    a thumbnail export failure) becomes visible to whoever ran the build."""
+    nb = nbformat.read(nb_path, as_version=4)
+    warnings = []
+    for cell in nb.cells:
+        if cell.cell_type != "code":
+            continue
+        for output in cell.get("outputs", []):
+            if output.get("output_type") == "stream":
+                for line in output.get("text", "").splitlines():
+                    if marker in line:
+                        warnings.append(line)
+    return warnings

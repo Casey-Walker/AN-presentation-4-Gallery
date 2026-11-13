@@ -1,12 +1,9 @@
 import json
-import logging
 import os
 import shutil
 import urllib.request
 
 import plotly.offline
-
-logger = logging.getLogger(__name__)
 
 GEO_TOPOJSON_URL = "https://cdn.plot.ly/un/usa_110m.json"
 GEO_TOPOJSON_NAME = "usa_110m"
@@ -111,7 +108,13 @@ def export_chart(fig, chart_id: str, out_dir: str, thumb_dir: str, vendor_rel_pa
     try:
         fig.write_image(thumb_path, width=400, height=260)
     except Exception as exc:
-        logger.warning("thumbnail export failed for chart %s: %s", chart_id, exc)
+        # logger.warning never surfaces anywhere useful: this runs inside a
+        # separate kernel process with no logging configured, and nbclient
+        # doesn't echo kernel output live. A plain print() lands in this
+        # cell's own "stream" output, which the orchestrator scans for and
+        # re-prints to the real console after execution finishes.
+        print(f"[chart_export] thumbnail export failed for chart {chart_id}: "
+              f"{type(exc).__name__}: {exc}")
         thumbnail = None
 
     title = fig.layout.title.text if fig.layout.title and fig.layout.title.text else ""

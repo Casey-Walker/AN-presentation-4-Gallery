@@ -5,7 +5,7 @@ from pathlib import Path
 import nbformat
 import pytest
 
-from notebook_exec import build_working_copy, execute_notebook
+from notebook_exec import build_working_copy, collect_stream_warnings, execute_notebook
 
 SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
 
@@ -66,6 +66,18 @@ def test_build_working_copy_raises_if_a_show_call_is_left_untransformed(tmp_path
     dst = tmp_path / "dst.ipynb"
     with pytest.raises(ValueError, match="untransformed"):
         build_working_copy(str(src), str(dst))
+
+
+def test_collect_stream_warnings_finds_marked_print_output(tmp_path):
+    nb = nbformat.v4.new_notebook(cells=[
+        nbformat.v4.new_code_cell("print('[chart_export] thumbnail export failed for chart 24_0: boom')"),
+        nbformat.v4.new_code_cell("print('ordinary output, not a warning')"),
+    ])
+    path = tmp_path / "nb.ipynb"
+    nbformat.write(nb, path)
+    execute_notebook(str(path), cwd=str(tmp_path))
+    warnings = collect_stream_warnings(str(path))
+    assert warnings == ["[chart_export] thumbnail export failed for chart 24_0: boom"]
 
 
 def test_repeated_calls_to_same_static_id_get_deduped_at_runtime(tmp_path):
