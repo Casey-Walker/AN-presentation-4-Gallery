@@ -11,8 +11,21 @@ MATPLOTLIB_CHART_CELLS: dict[int, str] = {
 _PRELUDE = (
     "import sys\n"
     "sys.path.insert(0, \"scripts\")\n"
-    "from chart_export import export_chart as _export, export_image as _export_image, ManifestWriter\n"
+    "from chart_export import export_chart as _export_chart, export_image as _export_image_impl, ManifestWriter\n"
     "_manifest = ManifestWriter(\"docs/_manifest_raw.jsonl\")\n"
+    "_seen_chart_ids = {}\n"
+    "def _dedupe_id(chart_id):\n"
+    "    n = _seen_chart_ids.get(chart_id, 0)\n"
+    "    _seen_chart_ids[chart_id] = n + 1\n"
+    "    return chart_id if n == 0 else f\"{chart_id}_{n}\"\n"
+    "def _export(fig, chart_id):\n"
+    "    entry = _export_chart(fig, _dedupe_id(chart_id), \"docs/charts\", \"docs/thumbs\", \"../vendor/plotly.min.js\")\n"
+    "    _manifest.append(entry)\n"
+    "    return entry\n"
+    "def _export_image(fig, chart_id, img_dir, thumb_dir, title):\n"
+    "    entry = _export_image_impl(fig, _dedupe_id(chart_id), img_dir, thumb_dir, title)\n"
+    "    _manifest.append(entry)\n"
+    "    return entry\n"
 )
 
 

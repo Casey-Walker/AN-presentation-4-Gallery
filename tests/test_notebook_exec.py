@@ -1,7 +1,13 @@
+import json
+import shutil
+from pathlib import Path
+
 import nbformat
 import pytest
 
 from notebook_exec import build_working_copy, execute_notebook
+
+SCRIPTS_DIR = Path(__file__).resolve().parent.parent / "scripts"
 
 
 def test_build_working_copy_does_not_touch_source(tmp_path):
@@ -51,3 +57,27 @@ def test_build_working_copy_rewrites_matplotlib_wordcloud_cell(tmp_path, monkeyp
     out_src = nb.cells[0].source
     assert '_export_image(fig, "0_mpl0"' in out_src
     assert "plt.show()" not in out_src
+
+
+def test_repeated_calls_to_same_static_id_get_deduped_at_runtime(tmp_path):
+    cell_src = (
+        "import plotly.express as px\n"
+        "def make_chart(y):\n"
+        "    fig = px.bar(x=[1], y=[y])\n"
+        "    fig.show()\n"
+        "make_chart(1)\n"
+        "make_chart(2)\n"
+    )
+    src = tmp_path / "src.ipynb"
+    nbformat.write(nbformat.v4.new_notebook(cells=[nbformat.v4.new_code_cell(cell_src)]), src)
+    dst = tmp_path / "dst.ipynb"
+    build_working_copy(str(src), str(dst))
+
+    (tmp_path / "scripts").mkdir()
+    shutil.copy(SCRIPTS_DIR / "chart_export.py", tmp_path / "scripts" / "chart_export.py")
+
+    execute_notebook(str(dst), cwd=str(tmp_path))
+
+    manifest_path = tmp_path / "docs" / "_manifest_raw.jsonl"
+    ids = [json.loads(line)["id"] for line in manifest_path.read_text().splitlines()]
+    assert ids == ["0_0", "0_0_1"]
