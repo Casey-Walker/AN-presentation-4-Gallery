@@ -59,6 +59,15 @@ def test_build_working_copy_rewrites_matplotlib_wordcloud_cell(tmp_path, monkeyp
     assert "plt.show()" not in out_src
 
 
+def test_build_working_copy_raises_if_a_show_call_is_left_untransformed(tmp_path):
+    src = tmp_path / "src.ipynb"
+    cell_src = "other_widget.show()\n"
+    nbformat.write(nbformat.v4.new_notebook(cells=[nbformat.v4.new_code_cell(cell_src)]), src)
+    dst = tmp_path / "dst.ipynb"
+    with pytest.raises(ValueError, match="untransformed"):
+        build_working_copy(str(src), str(dst))
+
+
 def test_repeated_calls_to_same_static_id_get_deduped_at_runtime(tmp_path):
     cell_src = (
         "import plotly.express as px\n"

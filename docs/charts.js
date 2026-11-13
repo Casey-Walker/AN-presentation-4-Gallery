@@ -163,7 +163,7 @@ window.CHARTS = [
     "id": "24_0",
     "title": "Segmentation Mapping: 2D K-Means Cluster Projection (PCA)",
     "file": "charts/24_0.html",
-    "thumbnail": "thumbs/24_0.png",
+    "thumbnail": null,
     "interactive": true,
     "section": "8. K-Means Clustering (Elbow + Silhouette)",
     "subsection": null,

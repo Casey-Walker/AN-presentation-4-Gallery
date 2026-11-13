@@ -19,7 +19,7 @@ _PRELUDE = (
     "    _seen_chart_ids[chart_id] = n + 1\n"
     "    return chart_id if n == 0 else f\"{chart_id}_{n}\"\n"
     "def _export(fig, chart_id):\n"
-    "    entry = _export_chart(fig, _dedupe_id(chart_id), \"docs/charts\", \"docs/thumbs\", \"../vendor/plotly.min.js\")\n"
+    "    entry = _export_chart(fig, _dedupe_id(chart_id), \"docs/charts\", \"docs/thumbs\", \"../vendor/plotly.min.js\", \"../vendor/geo-assets.js\")\n"
     "    _manifest.append(entry)\n"
     "    return entry\n"
     "def _export_image(fig, chart_id, img_dir, thumb_dir, title):\n"
@@ -52,6 +52,13 @@ def build_working_copy(src_ipynb: str, dst_ipynb: str) -> int:
         if cell_index in MATPLOTLIB_CHART_CELLS:
             new_source = _rewrite_matplotlib_show(new_source, cell_index)
             total_charts += 1
+        if ".show()" in new_source:
+            raise ValueError(
+                f"cell {cell_index}: a .show() call was left untransformed after "
+                "chart extraction -- it would silently render inline instead of "
+                "being exported, and CHART_META validation would never catch it "
+                "since it never becomes a chart id"
+            )
         if first_code_cell:
             new_source = _PRELUDE + new_source
             first_code_cell = False

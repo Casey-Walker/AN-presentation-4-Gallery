@@ -78,6 +78,13 @@ function renderTile(chart) {
     tile.appendChild(placeholder);
   }
 
+  if (!chart.interactive) {
+    const badge = document.createElement("span");
+    badge.className = "tile-badge";
+    badge.textContent = "Static image";
+    tile.appendChild(badge);
+  }
+
   const caption = document.createElement("div");
   caption.className = "tile-title";
   caption.textContent = chart.title;
@@ -99,7 +106,7 @@ function renderPresenter(charts, chartId) {
   presenter.hidden = false;
 
   document.getElementById("presenter-frame").src = chart.file;
-  document.getElementById("presenter-title").textContent = chart.title;
+  document.getElementById("presenter-title").textContent = chart.title + (chart.interactive ? "" : " (static image)");
   document.getElementById("presenter-text").textContent = chart.caption;
   document.getElementById("presenter-progress").textContent = (index + 1) + " / " + total;
 
@@ -129,16 +136,28 @@ function handleHashChange() {
   }
 }
 
-document.addEventListener("keydown", (event) => {
+function handlePresenterKey(key) {
   const presenter = document.getElementById("presenter");
   if (presenter.hidden) return;
 
-  if (event.key === "ArrowRight") {
+  if (key === "ArrowRight") {
     document.getElementById("presenter-next").click();
-  } else if (event.key === "ArrowLeft") {
+  } else if (key === "ArrowLeft") {
     document.getElementById("presenter-prev").click();
-  } else if (event.key === "Escape") {
+  } else if (key === "Escape") {
     location.hash = "";
+  }
+}
+
+document.addEventListener("keydown", (event) => handlePresenterKey(event.key));
+
+// Chart pages run in an <iframe>: once a click lands inside one (to use the
+// chart's own zoom/hover/legend controls), keydown events go to that
+// iframe's document instead of this one. Each chart's own page forwards
+// arrow/Escape keys here via postMessage so navigation still works.
+window.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "presenter-key") {
+    handlePresenterKey(event.data.key);
   }
 });
 

@@ -34,7 +34,16 @@ python scripts/export_charts.py
 This runs an unmodified copy of the notebook (the original `.ipynb` file
 is never changed) against `Presentation 4 Jobs data.csv`, and rewrites
 everything under `docs/charts/`, `docs/images/`, `docs/thumbs/`, and
-`docs/charts.js`.
+`docs/charts.js`. If anything goes wrong partway through (a cell errors,
+or a chart ends up without a matching caption), the previous working
+gallery is restored automatically and nothing is left half-broken.
+
+**Regenerating needs internet access** (to install packages, download
+NLTK's stopword list, and fetch the map outlines and pyLDAvis's JS
+library so they can be vendored locally) — but once it's done, *presenting*
+from `docs/` needs none. `kaleido` (used for chart thumbnails) also needs
+a local Chrome/Chromium; if one isn't already on your machine, `pip
+install kaleido` pulls one down for it automatically on first use.
 
 ## Repo layout
 

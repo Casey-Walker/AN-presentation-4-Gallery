@@ -25,6 +25,7 @@ def test_multiple_show_same_cell_get_unique_ids():
     assert n == 2
     assert '"13_0"' in new_src
     assert '"13_1"' in new_src
+    assert new_src.index('"13_0"') < new_src.index('"13_1"'), "ids must appear in call order"
 
 
 def test_standalone_show_after_separate_style_call():
@@ -48,6 +49,28 @@ def test_multiline_style_call_is_transformed():
     assert n == 1
     assert '"15_0"' in new_src
     assert ".show()" not in new_src
+
+
+def test_separate_style_call_followed_by_another_chart_in_same_cell():
+    src = (
+        "style(fig, height=600)\n"
+        "fig.show()\n"
+        "fig = px.bar(x=[1])\n"
+        "style(fig, height=400).show()\n"
+    )
+    new_src, n = transform_cell_source(src, cell_index=50)
+    assert n == 2
+    assert '_export(fig, "50_0")' in new_src
+    assert '_export(style(fig, height=400), "50_1")' in new_src
+    assert "fig = px.bar(x=[1])" in new_src, "the reassignment must survive untouched, not get swallowed"
+    assert ".show()" not in new_src
+
+
+def test_fig_like_variable_names_are_not_matched():
+    src = "subfig.show()\nfig_map.show()\nfig2.show()\n"
+    new_src, n = transform_cell_source(src, cell_index=60)
+    assert n == 0
+    assert new_src == src
 
 
 def test_no_show_call_is_unchanged():
