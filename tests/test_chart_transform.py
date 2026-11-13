@@ -38,6 +38,18 @@ def test_standalone_show_after_separate_style_call():
     assert ".show()" not in new_src
 
 
+def test_multiline_style_call_is_transformed():
+    src = (
+        "fig = px.bar(ngram_df, x='Frequency', y='Term', orientation='h')\n"
+        "style(fig, height=450, yaxis={'categoryorder': 'total ascending'}, coloraxis_showscale=False,\n"
+        "      margin=dict(l=180, r=40, t=80, b=60)).show()\n"
+    )
+    new_src, n = transform_cell_source(src, cell_index=15)
+    assert n == 1
+    assert '"15_0"' in new_src
+    assert ".show()" not in new_src
+
+
 def test_no_show_call_is_unchanged():
     src = "df['cluster'] = kmeans.labels_\n"
     new_src, n = transform_cell_source(src, cell_index=24)

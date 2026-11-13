@@ -1,6 +1,6 @@
 import re
 
-_SHOW_PATTERN = re.compile(r"(style\(fig[^\n]*?\)|fig)\.show\(\)")
+_SHOW_PATTERN = re.compile(r"(style\(fig.*?\)|fig)\.show\(\)", re.DOTALL)
 
 
 def transform_cell_source(source: str, cell_index: int) -> tuple[str, int]:
