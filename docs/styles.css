@@ -102,9 +102,12 @@ body {
   position: fixed;
   inset: 0;
   background: var(--bg);
-  display: flex;
   flex-direction: column;
   z-index: 10;
+}
+
+#presenter:not([hidden]) {
+  display: flex;
 }
 
 .presenter-bar {
