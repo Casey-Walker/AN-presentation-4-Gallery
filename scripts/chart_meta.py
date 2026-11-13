@@ -76,6 +76,8 @@ CHART_META: dict[str, dict] = {
 
     "27_0": {"section": SEC_9, "subsection": None,
              "caption": "LDA perplexity across 3-10 topics -- flat, so topic count is chosen for interpretability, not the metric."},
+    "28_0": {"section": SEC_9, "subsection": None,
+             "caption": "How many postings fall under each of the 6 LDA topics."},
     "29_lda": {"section": SEC_9, "subsection": None,
                "caption": "Interactive LDA topic-model explorer (pyLDAvis) -- intertopic distance and top terms per topic."},
 
