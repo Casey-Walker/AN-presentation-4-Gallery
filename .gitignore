@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+docs/_manifest_raw.jsonl
+.superpowers/
