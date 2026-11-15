@@ -1,35 +1,5 @@
 window.CHARTS = [
   {
-    "id": "3_0",
-    "title": "Missing-Data Audit: Share of Postings Missing Each Field",
-    "file": "charts/3_0.html",
-    "thumbnail": "thumbs/3_0.png",
-    "interactive": true,
-    "section": "1. Setup and Load",
-    "subsection": null,
-    "caption": "Which fields are missing, and how often -- salary and URL are the big gaps."
-  },
-  {
-    "id": "7_0",
-    "title": "Demand Volume: Top 15 Titles in Our Data & Analytics Subset",
-    "file": "charts/7_0.html",
-    "thumbnail": "thumbs/7_0.png",
-    "interactive": true,
-    "section": "2. Subset to Our Research Focus",
-    "subsection": null,
-    "caption": "The 15 most common job titles in the U.S. analytics-postings subset."
-  },
-  {
-    "id": "13_0",
-    "title": "Tech-Skill Flags: Share of Postings Mentioning Each Tool",
-    "file": "charts/13_0.html",
-    "thumbnail": "thumbs/13_0.png",
-    "interactive": true,
-    "section": "4. Feature Engineering from Text",
-    "subsection": null,
-    "caption": "Share of postings mentioning each tool, from regex flags on skills + description."
-  },
-  {
     "id": "13_1",
     "title": "Years of Experience Required (Regex-Extracted)",
     "file": "charts/13_1.html",
