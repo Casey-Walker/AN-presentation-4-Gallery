@@ -99,6 +99,6 @@ def test_repeated_calls_to_same_static_id_get_deduped_at_runtime(tmp_path):
 
     execute_notebook(str(dst), cwd=str(tmp_path))
 
-    manifest_path = tmp_path / "docs" / "_manifest_raw.jsonl"
+    manifest_path = tmp_path / "interactive-dashboard" / "_manifest_raw.jsonl"
     ids = [json.loads(line)["id"] for line in manifest_path.read_text().splitlines()]
     assert ids == ["0_0", "0_0_1"]

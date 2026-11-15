@@ -6,7 +6,7 @@ kaleido==1.5.1
 pytest==9.2.0
 
 # The notebook's own dependencies -- needed to regenerate the gallery
-# (python scripts/export_charts.py), not to just open and present it.
+# (python build/scripts/export_charts.py), not to just open and present it.
 numpy==2.4.6
 pandas==3.0.3
 matplotlib==3.11.2

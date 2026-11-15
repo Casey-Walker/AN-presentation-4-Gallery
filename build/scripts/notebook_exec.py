@@ -12,14 +12,14 @@ _PRELUDE = (
     "import sys\n"
     "sys.path.insert(0, \"scripts\")\n"
     "from chart_export import export_chart as _export_chart, export_image as _export_image_impl, ManifestWriter\n"
-    "_manifest = ManifestWriter(\"docs/_manifest_raw.jsonl\")\n"
+    "_manifest = ManifestWriter(\"interactive-dashboard/_manifest_raw.jsonl\")\n"
     "_seen_chart_ids = {}\n"
     "def _dedupe_id(chart_id):\n"
     "    n = _seen_chart_ids.get(chart_id, 0)\n"
     "    _seen_chart_ids[chart_id] = n + 1\n"
     "    return chart_id if n == 0 else f\"{chart_id}_{n}\"\n"
     "def _export(fig, chart_id):\n"
-    "    entry = _export_chart(fig, _dedupe_id(chart_id), \"docs/charts\", \"docs/thumbs\", \"../vendor/plotly.min.js\", \"../vendor/geo-assets.js\")\n"
+    "    entry = _export_chart(fig, _dedupe_id(chart_id), \"interactive-dashboard/charts\", \"interactive-dashboard/thumbs\", \"../vendor/plotly.min.js\", \"../vendor/geo-assets.js\")\n"
     "    _manifest.append(entry)\n"
     "    return entry\n"
     "def _export_image(fig, chart_id, img_dir, thumb_dir, title):\n"
@@ -33,7 +33,7 @@ def _rewrite_matplotlib_show(source: str, cell_index: int) -> str:
     slug = MATPLOTLIB_CHART_CELLS[cell_index]
     chart_id = f"{cell_index}_mpl0"
     replacement = (
-        f'_export_image(fig, "{chart_id}", "docs/images", "docs/thumbs", '
+        f'_export_image(fig, "{chart_id}", "interactive-dashboard/images", "interactive-dashboard/thumbs", '
         f'(fig.axes[0].get_title() if fig.axes else ""))'
     )
     return source.replace("plt.show()", replacement)

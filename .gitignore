@@ -1,7 +1,9 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-docs/_manifest_raw.jsonl
+interactive-dashboard/_manifest_raw.jsonl
 .superpowers/
+.pytest_cache/
 2026-11-05 Class Recording Transcript (1-06-00 to end).md
 pyldavis_topics.html
+Presentation 4 - Metro Analytics Notebook.ipynb

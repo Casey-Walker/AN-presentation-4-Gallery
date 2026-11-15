@@ -1,6 +1,6 @@
 from pathlib import Path
 
-DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
+DOCS_DIR = Path(__file__).resolve().parent.parent.parent / "interactive-dashboard"
 
 
 def test_app_js_never_uses_fetch_or_xhr():
