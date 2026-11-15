@@ -19,10 +19,7 @@ cost-of-living conscious, should focus their job search first.
 
 ## Viewing the Dashboard
 
-Live: https://casey-walker.github.io/AN-presentation-4-Gallery/
-
-Or open [`interactive-dashboard/index.html`](interactive-dashboard/index.html)
-in any browser — no server or internet connection required. Click any
+(https://casey-walker.github.io/AN-presentation-4-Gallery/) Click any
 chart to enter a full-screen presenter view with Next/Previous navigation.
 
 ## Repo Layout
