@@ -72,7 +72,7 @@ CHART_META: dict[str, dict] = {
     "23_0": {"section": SEC_8, "subsection": None,
              "caption": "Choosing k for K-means: inertia (elbow) vs. silhouette score, k = 3-10."},
     "24_0": {"section": SEC_8, "subsection": None,
-             "caption": "2D PCA projection of the 6 K-means role segments."},
+             "caption": "2D PCA projection of the 8 K-means role segments."},
 
     "27_0": {"section": SEC_9, "subsection": None,
              "caption": "LDA perplexity across 3-10 topics -- flat, so topic count is chosen for interpretability, not the metric."},
