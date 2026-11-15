@@ -32,33 +32,14 @@ function renderGallery(charts) {
   const gallery = document.getElementById("gallery");
   gallery.innerHTML = "";
 
-  for (const { sectionName, subsections } of groupBySectionThenSubsection(charts)) {
-    const section = document.createElement("section");
-    section.className = "chart-section";
+  const grid = document.createElement("div");
+  grid.className = "tile-grid";
 
-    const heading = document.createElement("h2");
-    heading.textContent = sectionName;
-    section.appendChild(heading);
-
-    for (const [subsectionName, subCharts] of subsections) {
-      if (subsectionName) {
-        const subHeading = document.createElement("h3");
-        subHeading.textContent = subsectionName;
-        section.appendChild(subHeading);
-      }
-
-      const grid = document.createElement("div");
-      grid.className = "tile-grid";
-
-      for (const chart of subCharts) {
-        grid.appendChild(renderTile(chart));
-      }
-
-      section.appendChild(grid);
-    }
-
-    gallery.appendChild(section);
+  for (const chart of flattenOrdered(charts)) {
+    grid.appendChild(renderTile(chart));
   }
+
+  gallery.appendChild(grid);
 }
 
 function renderTile(chart) {

@@ -41,23 +41,6 @@ body {
   padding: 8px 32px 48px;
 }
 
-.chart-section {
-  margin-top: 28px;
-}
-
-.chart-section h2 {
-  font-size: 1.2rem;
-  color: var(--ink);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 6px;
-}
-
-.chart-section h3 {
-  font-size: 1rem;
-  color: var(--muted);
-  margin: 16px 0 8px;
-}
-
 /* Uniform, tightly-packed tiles -- gallery/Zoom-grid style. */
 .tile-grid {
   display: grid;
