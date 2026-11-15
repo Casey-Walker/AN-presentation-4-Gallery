@@ -19,12 +19,13 @@ cost-of-living conscious, should focus their job search first.
 
 ## Viewing the Dashboard
 
-Open [`interactive-dashboard/index.html`](interactive-dashboard/index.html)
+Live: https://casey-walker.github.io/AN-presentation-4-Gallery/
+
+Or open [`interactive-dashboard/index.html`](interactive-dashboard/index.html)
 in any browser — no server or internet connection required. Click any
 chart to enter a full-screen presenter view with Next/Previous navigation.
 
 ## Repo Layout
 
 - `interactive-dashboard/` — the interactive chart gallery (open this to present).
-- `data/` — the raw dataset the analysis is based on.
-- `build/` — the pipeline that regenerates the dashboard from the source notebook, plus its tests.
+- `build/` — the pipeline that regenerates the dashboard from the source notebook, plus its tests. The raw dataset itself isn't included in this repo.
