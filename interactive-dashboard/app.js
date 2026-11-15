@@ -85,10 +85,13 @@ function renderTile(chart) {
     tile.appendChild(badge);
   }
 
-  const caption = document.createElement("div");
+  const overlay = document.createElement("div");
+  overlay.className = "tile-overlay";
+  const caption = document.createElement("p");
   caption.className = "tile-title";
   caption.textContent = chart.title;
-  tile.appendChild(caption);
+  overlay.appendChild(caption);
+  tile.appendChild(overlay);
 
   return tile;
 }

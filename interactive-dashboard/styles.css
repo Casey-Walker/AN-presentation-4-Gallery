@@ -1,16 +1,21 @@
+/* Palette pulled from the companion PowerPoint's theme (dk1/lt1/accent1-3). */
 :root {
-  --ink: #2c3e50;
-  --bg: #f8f9fa;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --accent: #16a085;
+  --ink: #f5f7fa;
+  --muted: #9aa6b8;
+  --bg: #0a0c10;
+  --panel-bg: #15171c;
+  --card-bg: #1b1e24;
+  --border: #2a2d34;
+  --accent: #4d9dff;
+  --accent-soft: #9cc9ff;
+  --accent-alt: #7a8cff;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
 }
@@ -21,13 +26,15 @@ body {
 
 .page-header h1 {
   margin: 0;
-  font-family: "Arial Black", Arial, sans-serif;
+  font-family: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 800;
   font-size: 1.8rem;
+  color: var(--ink);
 }
 
 .page-header .subtitle {
   margin: 4px 0 0;
-  color: #5a6b7a;
+  color: var(--muted);
 }
 
 #gallery {
@@ -40,32 +47,83 @@ body {
 
 .chart-section h2 {
   font-size: 1.2rem;
-  border-bottom: 2px solid var(--border);
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
   padding-bottom: 6px;
 }
 
 .chart-section h3 {
   font-size: 1rem;
-  color: #5a6b7a;
+  color: var(--muted);
   margin: 16px 0 8px;
 }
 
+/* Uniform, tightly-packed tiles -- gallery/Zoom-grid style. */
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
 }
 
 .tile {
   position: relative;
   display: block;
+  aspect-ratio: 400 / 260;
+  border-radius: 6px;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
   text-decoration: none;
   color: var(--ink);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition: outline-color 0.15s ease, transform 0.15s ease;
+}
+
+.tile:hover {
+  outline-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tile-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--card-bg);
+}
+
+/* Name-tag-style overlay, like a video tile's label in gallery view. */
+.tile-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px 10px 8px;
+  background: linear-gradient(to top, rgba(10, 12, 16, 0.92), rgba(10, 12, 16, 0));
+  pointer-events: none;
+}
+
+.tile-title {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
 }
 
 .tile-badge {
@@ -73,42 +131,12 @@ body {
   top: 8px;
   right: 8px;
   padding: 2px 8px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: bold;
-  color: #fff;
-  background: rgba(44, 62, 80, 0.8);
+  color: var(--accent-soft);
+  background: rgba(10, 12, 16, 0.75);
+  border: 1px solid var(--border);
   border-radius: 4px;
-}
-
-.tile:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.tile img {
-  display: block;
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  background: var(--bg);
-}
-
-.tile-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 140px;
-  padding: 12px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #5a6b7a;
-  background: var(--bg);
-}
-
-.tile-title {
-  padding: 10px 12px;
-  font-size: 0.85rem;
-  font-weight: bold;
 }
 
 #presenter {
@@ -137,6 +165,10 @@ body {
   font-weight: bold;
 }
 
+#presenter-progress {
+  color: var(--muted);
+}
+
 .presenter-caption {
   padding: 8px 24px;
 }
@@ -144,11 +176,12 @@ body {
 .presenter-caption h2 {
   margin: 0 0 4px;
   font-size: 1.1rem;
+  color: var(--ink);
 }
 
 .presenter-caption p {
   margin: 0;
-  color: #5a6b7a;
+  color: var(--muted);
 }
 
 .presenter-frame-wrap {
@@ -161,7 +194,7 @@ body {
   height: 100%;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: var(--card-bg);
+  background: var(--panel-bg);
 }
 
 .presenter-nav {
@@ -178,6 +211,11 @@ body {
   background: var(--card-bg);
   color: var(--ink);
   cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.presenter-nav button:hover:not(:disabled) {
+  border-color: var(--accent);
 }
 
 .presenter-nav button:disabled {
