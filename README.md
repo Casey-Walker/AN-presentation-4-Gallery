@@ -25,4 +25,4 @@ chart to enter a full-screen presenter view with Next/Previous navigation.
 ## Repo Layout
 
 - `interactive-dashboard/` — the interactive chart gallery (open this to present).
-- `build/` — the pipeline that regenerates the dashboard from the source notebook, plus its tests. The raw dataset itself isn't included in this repo.
+- `build/` — regenerates the dashboard from the source notebook (dataset not included), plus its tests.
