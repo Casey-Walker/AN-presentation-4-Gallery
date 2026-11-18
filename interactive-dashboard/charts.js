@@ -1,45 +1,5 @@
 window.CHARTS = [
   {
-    "id": "13_1",
-    "title": "Years of Experience Required (Regex-Extracted)",
-    "file": "charts/13_1.html",
-    "thumbnail": "thumbs/13_1.png",
-    "interactive": true,
-    "section": "4. Feature Engineering from Text",
-    "subsection": null,
-    "caption": "Minimum years of experience required, extracted by regex from posting text."
-  },
-  {
-    "id": "13_2",
-    "title": "Entry-Level Accessibility (Combined Rule)",
-    "file": "charts/13_2.html",
-    "thumbnail": "thumbs/13_2.png",
-    "interactive": true,
-    "section": "4. Feature Engineering from Text",
-    "subsection": null,
-    "caption": "How many postings qualify as entry-accessible under the combined rule."
-  },
-  {
-    "id": "13_3",
-    "title": "Compensation Benchmarks: Annualized Salary Midpoint (Disclosed Only)",
-    "file": "charts/13_3.html",
-    "thumbnail": "thumbs/13_3.png",
-    "interactive": true,
-    "section": "4. Feature Engineering from Text",
-    "subsection": null,
-    "caption": "Salary midpoint distribution, disclosed postings only."
-  },
-  {
-    "id": "13_4",
-    "title": "Salary Spread by Experience Level and Work Setting",
-    "file": "charts/13_4.html",
-    "thumbnail": "thumbs/13_4.png",
-    "interactive": true,
-    "section": "4. Feature Engineering from Text",
-    "subsection": null,
-    "caption": "Salary spread broken out by experience level and remote/on-site/hybrid."
-  },
-  {
     "id": "15_0",
     "title": "Contextual Vocabulary: Top 15 Unigrams (BEFORE cleaning)",
     "file": "charts/15_0.html",
@@ -90,36 +50,6 @@ window.CHARTS = [
     "caption": "Word clouds contrasting raw vs. cleaned posting text."
   },
   {
-    "id": "15_0_4",
-    "title": "Contextual Vocabulary: Top 15 Bigrams (entry-accessible postings)",
-    "file": "charts/15_0_4.html",
-    "thumbnail": "thumbs/15_0_4.png",
-    "interactive": true,
-    "section": "5. Text Visualization",
-    "subsection": null,
-    "caption": "Top bigrams within just the entry-accessible postings."
-  },
-  {
-    "id": "17_mpl0",
-    "title": "Entry-Accessible Postings: What They Talk About",
-    "file": "images/17_mpl0.png",
-    "thumbnail": "thumbs/17_mpl0.png",
-    "interactive": false,
-    "section": "5. Text Visualization",
-    "subsection": null,
-    "caption": "Word cloud of what entry-accessible postings talk about most."
-  },
-  {
-    "id": "19_0",
-    "title": "Similarity Matrix: Our 10 Best-Fit Postings",
-    "file": "charts/19_0.html",
-    "thumbnail": "thumbs/19_0.png",
-    "interactive": true,
-    "section": "6. TF-IDF and Cosine Similarity",
-    "subsection": null,
-    "caption": "Cosine similarity between our 10 best-fit postings and the 'dream job' profile."
-  },
-  {
     "id": "23_0",
     "title": "Choosing k: Elbow vs Silhouette",
     "file": "charts/23_0.html",
@@ -140,26 +70,6 @@ window.CHARTS = [
     "caption": "2D PCA projection of the 8 K-means role segments."
   },
   {
-    "id": "27_0",
-    "title": "LDA: Perplexity by Number of Topics (lower is better, but watch interpretability)",
-    "file": "charts/27_0.html",
-    "thumbnail": "thumbs/27_0.png",
-    "interactive": true,
-    "section": "9. LDA Topic Modeling (with pyLDAvis)",
-    "subsection": null,
-    "caption": "LDA perplexity across 3-10 topics -- flat, so topic count is chosen for interpretability, not the metric."
-  },
-  {
-    "id": "28_0",
-    "title": "Dominant LDA Topic per Posting",
-    "file": "charts/28_0.html",
-    "thumbnail": "thumbs/28_0.png",
-    "interactive": true,
-    "section": "9. LDA Topic Modeling (with pyLDAvis)",
-    "subsection": null,
-    "caption": "How many postings fall under each of the 6 LDA topics."
-  },
-  {
     "id": "32_0",
     "title": "Top 20 Skills Employers List (skills column)",
     "file": "charts/32_0.html",
@@ -168,16 +78,6 @@ window.CHARTS = [
     "section": "10. Skills Analysis",
     "subsection": null,
     "caption": "The 20 most frequently requested skills across postings."
-  },
-  {
-    "id": "32_1",
-    "title": "Skill Co-occurrence: How Often Top Skills Are Requested Together",
-    "file": "charts/32_1.html",
-    "thumbnail": "thumbs/32_1.png",
-    "interactive": true,
-    "section": "10. Skills Analysis",
-    "subsection": null,
-    "caption": "Which top skills get requested together most often."
   },
   {
     "id": "32_2",
@@ -250,36 +150,6 @@ window.CHARTS = [
     "caption": "Metro areas found by clustering posting coordinates with DBSCAN."
   },
   {
-    "id": "45_0",
-    "title": "Normalized Demand: Data & Analytics Postings per Million Residents",
-    "file": "charts/45_0.html",
-    "thumbnail": "thumbs/45_0.png",
-    "interactive": true,
-    "section": "12. Normalized Economic Measures",
-    "subsection": null,
-    "caption": "Posting demand normalized by state population."
-  },
-  {
-    "id": "45_1",
-    "title": "Cost-of-Living-Adjusted Median Salary (BEA RPP 2024)",
-    "file": "charts/45_1.html",
-    "thumbnail": "thumbs/45_1.png",
-    "interactive": true,
-    "section": "12. Normalized Economic Measures",
-    "subsection": null,
-    "caption": "Median salary adjusted for regional purchasing power (BEA RPP)."
-  },
-  {
-    "id": "45_2",
-    "title": "States: Demand per Capita vs Purchasing-Power Salary (bubble = postings)",
-    "file": "charts/45_2.html",
-    "thumbnail": "thumbs/45_2.png",
-    "interactive": true,
-    "section": "12. Normalized Economic Measures",
-    "subsection": null,
-    "caption": "States plotted by demand per capita vs. purchasing-power-adjusted salary."
-  },
-  {
     "id": "48_0",
     "title": "Metro Scorecard: Volume + Adjusted Salary + Accessibility",
     "file": "charts/48_0.html",
@@ -288,36 +158,6 @@ window.CHARTS = [
     "section": "13. Metro Scorecard, Summary and Recommendations",
     "subsection": null,
     "caption": "Metro ranking combining posting volume, adjusted salary, and entry accessibility."
-  },
-  {
-    "id": "50_0",
-    "title": "Executive Summary Dashboard",
-    "file": "charts/50_0.html",
-    "thumbnail": "thumbs/50_0.png",
-    "interactive": true,
-    "section": "13. Metro Scorecard, Summary and Recommendations",
-    "subsection": null,
-    "caption": "Headline numbers for the whole analysis in one view."
-  },
-  {
-    "id": "54_0",
-    "title": "Observed: Top Employers by Postings, AI-Related vs Data & Analytics",
-    "file": "charts/54_0.html",
-    "thumbnail": "thumbs/54_0.png",
-    "interactive": true,
-    "section": "15. Industry Question: Who Is Investing Most in Data, Analytics and AI?",
-    "subsection": null,
-    "caption": "Top employers by posting volume, AI-related vs. general data & analytics."
-  },
-  {
-    "id": "55_0",
-    "title": "Inferred Industries: Posting Volume vs Share of AI-Related Postings",
-    "file": "charts/55_0.html",
-    "thumbnail": "thumbs/55_0.png",
-    "interactive": true,
-    "section": "15. Industry Question: Who Is Investing Most in Data, Analytics and AI?",
-    "subsection": null,
-    "caption": "Posting volume vs. share of AI-related postings, by inferred industry."
   },
   {
     "id": "29_lda",
