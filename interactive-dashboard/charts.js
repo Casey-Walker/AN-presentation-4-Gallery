@@ -50,6 +50,16 @@ window.CHARTS = [
     "caption": "Word clouds contrasting raw vs. cleaned posting text."
   },
   {
+    "id": "19_0",
+    "title": "Similarity Matrix: Our 10 Best-Fit Postings",
+    "file": "charts/19_0.html",
+    "thumbnail": "thumbs/19_0.png",
+    "interactive": true,
+    "section": "6. TF-IDF and Cosine Similarity",
+    "subsection": null,
+    "caption": "Cosine similarity between our 10 best-fit postings and the 'dream job' profile."
+  },
+  {
     "id": "23_0",
     "title": "Choosing k: Elbow vs Silhouette",
     "file": "charts/23_0.html",
